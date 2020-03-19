@@ -10,7 +10,10 @@ using namespace std;
 int main()
 {
     // generare_steag(3);
-    //generare_steag_3culori(3);
-    generare_muchii_cub();
+    // generare_steag_3culori(3);
+    // generare_muchii_cub();
+    exemple_merge_sort();
+    
+    
     return 0;
 }

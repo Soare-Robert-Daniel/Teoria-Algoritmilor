@@ -22,7 +22,8 @@ void exemple_merge_sort()
     int v[6] = {3, -1, 2, 0, 1, 4};
 
     cout <<"# Merge sort\n";
-    for(int i = 0; i < n; ++i) {
+    for(int i = 0; i < n; ++i)
+    {
         cout << v[i] << " ";
     }
     cout << " -> ";
@@ -111,4 +112,80 @@ void interclasare(int *v, int stanga, int mijloc, int dreapta)
 /*
     Turnurile din Haoi
 */
+
+void hanoi(int discuri, int ia_din_tija, int pune_in_tija)
+{
+    if(discuri == 1)
+    {
+        cout << "Mut din " << ia_din_tija << " in " << pune_in_tija << endl;
+    }
+    else
+    {
+        int tija_suport = 6 - ia_din_tija - pune_in_tija;
+
+        hanoi(discuri - 1, ia_din_tija, tija_suport);
+        cout << "Mut din " << ia_din_tija << " in " << pune_in_tija << endl;
+        hanoi(discuri - 1, tija_suport, pune_in_tija);
+    }
+}
+void exemplu_turn_hanoi()
+{
+    cout << "# Hanoi cu 3 discuri\n";
+    hanoi(3, 1, 2);
+}
+
+/*
+    Cel mai mic divizor comun al unei multimi de numere
+*/
+
+int cmmdc_2(int a, int b);
+int cmmdc(int *v, int stanga, int dreapta);
+
+void exemplu_cmmdc()
+{
+    cout <<"# Cel mai mare divizor comun pentru o lista de numere\n";
+    const int n = 6;
+    int v[n] = {10, 15, 20, 25, 30, 35};
+    for (int i = 0; i < n; ++i)
+    {
+        cout << v[i] << " ";
+    }
+    cout << " -> CMMDC: " << cmmdc(v, 0, n - 1);
+}
+
+int cmmdc(int *v, int stanga, int dreapta)
+{
+    if(stanga == dreapta) {
+        return v[stanga];
+    }
+
+    if(dreapta - stanga == 2) {
+        return cmmdc_2(v[stanga], v[dreapta]);
+    }
+
+    int mijloc = (stanga + dreapta) / 2;
+
+    int cmmmdc_stanga = cmmdc(v, stanga, mijloc);
+    int cmmmdc_dreapta = cmmdc(v, mijloc + 1, dreapta);
+
+    return cmmdc_2(cmmmdc_stanga, cmmmdc_dreapta);
+}
+
+int cmmdc_2(int a, int b)
+{
+    while (b != a)
+    {
+        if (a < b)
+        {
+            b -= a;
+        }
+        else
+        {
+            a -= b;
+        }
+    }
+
+    return a;
+}
+
 #endif
